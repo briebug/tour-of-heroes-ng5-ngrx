@@ -15,3 +15,12 @@ export const getSelectedHeroId = createSelector(
   getHeroesState,
   fromHeroes.getSelectedHeroId
 );
+
+export const getSelectedHero = createSelector(
+  getHeroesState,
+  getSelectedHeroId,
+  (entities, selectedHeroId) => {
+    // console.log(`getSelectedHero = ${entities[selectedHeroId].id}`);
+    return entities && entities[selectedHeroId]
+  }
+);

@@ -16,7 +16,7 @@ import { getAllHeroes } from './state/heroes';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[];
-  heroObservable: Observable<Hero[]>;
+  heroesObservable: Observable<Hero[]>;
 
   constructor(
     private router: Router,
@@ -24,9 +24,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.heroObservable = this.store.select(getAllHeroes);
+    this.heroesObservable = this.store.select(getAllHeroes);
     this.store.dispatch(new LoadHeroes);
-    this.heroObservable
+    this.heroesObservable
       .catch(err => {
         console.log(err);
         return of(err);

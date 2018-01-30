@@ -7,8 +7,8 @@ import { of } from 'rxjs/observable/of';
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
 import { TourOfHeroesState } from './state/app.interfaces';
-import { LoadHeroes } from './state/heroes/heroes.actions';
-import { getAllHeroes } from './state/heroes';
+import { LoadHero, LoadHeroes, SelectHero } from './state/heroes/heroes.actions';
+import { getAllHeroes, getSelectedHero, getSelectedHeroId } from './state/heroes';
 
 @Component({
   selector: 'my-heroes',
@@ -19,6 +19,9 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[];
   heroesObservable: Observable<Hero[]>;
   selectedHero: Hero;
+  selectedHeroObservable: Observable<Hero>;
+  selectedHeroId: number;
+  selectedHeroIdObservable: Observable<number>;
   addingHero = false;
   error: any;
   showNgFor = false;
@@ -30,8 +33,10 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroesObservable = this.store.select(getAllHeroes);
-    this.store.dispatch(new LoadHeroes);
+    this.selectedHeroObservable = this.store.select(getSelectedHero);
+    this.selectedHeroIdObservable = this.store.select(getSelectedHeroId);
 
+    this.store.dispatch(new LoadHeroes);
     this.heroesObservable
       .catch(err => {
         console.log(err);
@@ -65,7 +70,36 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero): void {
-    this.selectedHero = hero;
+    this.store.dispatch(new SelectHero(hero));
+    this.selectedHeroObservable.subscribe(
+      selectedHero => {
+        this.selectedHero = selectedHero;
+        if (this.selectedHero) {
+          console.log(`selectedHero = ${this.selectedHero.id}`);
+        }
+      }
+    );
+    this.selectedHeroIdObservable.subscribe(
+      heroId => {
+        this.selectedHeroId = heroId;
+        if (this.selectedHeroId) {
+          console.log(`selectedHeroId = ${this.selectedHeroId}`);
+        }
+      }
+    );
+
+    if (this.selectedHeroId) {
+      this.store.dispatch(new LoadHero({ id: this.selectedHeroId }));
+      this.selectedHeroObservable.subscribe(
+        selectedHero => {
+          this.selectedHero = selectedHero;
+          if (this.selectedHero) {
+            console.log(`selectedHero = ${this.selectedHero.id}`);
+          }
+        }
+      );
+    }
+    // this.selectedHero = hero;
     this.addingHero = false;
   }
 
