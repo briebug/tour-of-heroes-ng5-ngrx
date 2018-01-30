@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
+import { TourOfHeroesState } from './state/app.interfaces';
+import { LoadHeroes } from './state/heroes/heroes.actions';
+import { getAllHeroes } from './state/heroes';
 
 @Component({
   selector: 'my-heroes',
@@ -11,6 +17,7 @@ import { HeroService } from './hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
+  heroesObservable: Observable<Hero[]>;
   selectedHero: Hero;
   addingHero = false;
   error: any;
@@ -18,11 +25,18 @@ export class HeroesComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private store: Store<TourOfHeroesState>,
     private heroService: HeroService) { }
 
   getHeroes(): void {
-    this.heroService
-      .getHeroes()
+    this.heroesObservable = this.store.select(getAllHeroes);
+    this.store.dispatch(new LoadHeroes);
+
+    this.heroesObservable
+      .catch(err => {
+        console.log(err);
+        return of(err);
+      })
       .subscribe(heroes => this.heroes = heroes);
   }
 

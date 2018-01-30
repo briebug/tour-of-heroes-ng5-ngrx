@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 import { Hero } from './hero';
-import { HeroService } from './hero.service';
+import { TourOfHeroesState } from './state/app.interfaces';
+import { LoadHeroes } from './state/heroes/heroes.actions';
+import { getAllHeroes } from './state/heroes';
 
 @Component({
   selector: 'my-dashboard',
@@ -10,15 +15,22 @@ import { HeroService } from './hero.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+  heroes: Hero[];
+  heroObservable: Observable<Hero[]>;
 
   constructor(
     private router: Router,
-    private heroService: HeroService) {
+    private store: Store<TourOfHeroesState>) {
   }
 
   ngOnInit(): void {
-    this.heroService.getHeroes()
+    this.heroObservable = this.store.select(getAllHeroes);
+    this.store.dispatch(new LoadHeroes);
+    this.heroObservable
+      .catch(err => {
+        console.log(err);
+        return of(err);
+      })
       .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
 

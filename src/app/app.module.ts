@@ -13,6 +13,7 @@ import { HeroSearchComponent } from './hero-search.component';
 import { HeroService } from './hero.service';
 import { HeroesComponent } from './heroes.component';
 import { InMemoryDataService } from './in-memory-data.service';
+import { StateModule } from './state/state.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { InMemoryDataService } from './in-memory-data.service';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    StateModule.forRoot(),
     InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })
   ],
   declarations: [
