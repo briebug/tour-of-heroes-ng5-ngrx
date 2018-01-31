@@ -15,7 +15,7 @@ import { CustomRouterStateSerializer } from './shared/utils';
     CommonModule,
     StoreRouterConnectingModule,
     StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
-    EffectsModule.forRoot([AppEffects, HeroesEffects]),
+    EffectsModule.forRoot([HeroesEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   declarations: []

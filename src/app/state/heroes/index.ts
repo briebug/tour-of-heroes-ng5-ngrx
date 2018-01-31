@@ -4,6 +4,11 @@ import { State as HeroesState } from './heroes.reducers';
 
 export const getHeroesState = createFeatureSelector<HeroesState>('heroes');
 
+export const getHeroesEntityState = createSelector(
+  getHeroesState,
+  state => state.entities
+);
+
 export const {
   selectAll: getAllHeroes,
   selectEntities: getHeroEntities,
@@ -11,16 +16,20 @@ export const {
   selectTotal: getHeroesTotal,
 } = fromHeroes.adapter.getSelectors(getHeroesState);
 
-export const getSelectedHeroId = createSelector(
+export const getSelectedHeroId = createSelector (
   getHeroesState,
   fromHeroes.getSelectedHeroId
 );
 
-export const getSelectedHero = createSelector(
+export const getIsHeroBeingAdded = createSelector (
   getHeroesState,
+  fromHeroes.isHeroBeingAdded
+);
+
+export const getSelectedHero = createSelector (
+  getHeroesEntityState,
   getSelectedHeroId,
   (entities, selectedHeroId) => {
-    // console.log(`getSelectedHero = ${entities[selectedHeroId].id}`);
     return entities && entities[selectedHeroId]
   }
 );
