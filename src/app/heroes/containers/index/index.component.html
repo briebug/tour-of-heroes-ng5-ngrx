@@ -1,0 +1,11 @@
+<h2>My Heroes</h2>
+
+<my-heroes
+  [heroes]="heroesObservable | async"
+  [addingHero]="addingHeroObservable | async"
+  [selectedHero]="selectedHeroObservable | async"
+  (selectedHeroEvent)="onSelectedHero($event)"
+  (heroAddedEvent)="onHeroAdded($event)"
+  (heroDeletedEvent)="onHeroDeleted($event)"
+  (addingHeroEvent)="onAddingHero($event)"
+></my-heroes>
