@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Hero } from '../../../hero';
+import { Hero } from '../../../core/models/hero';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'my-hero-search',
@@ -12,16 +14,20 @@ export class HeroSearchComponent implements OnInit {
   @Output() searchTerms = new EventEmitter<string>();
   @Output() selectedSearchItem = new EventEmitter<number>();
 
-  constructor() { }
+  form: FormGroup;
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      term: ''
+    });
+  }
 
   ngOnInit() {
+    this.form.valueChanges
+      .pipe(debounceTime(200))
+      .subscribe(value => this.searchTerms.emit(value.term));
   }
 
-  search(term: string) {
-    this.searchTerms.emit(term);
-  }
-
-  gotoDetail(hero: Hero) {
+  goTodetail(hero: Hero) {
     this.selectedSearchItem.emit(hero.id);
   }
 }

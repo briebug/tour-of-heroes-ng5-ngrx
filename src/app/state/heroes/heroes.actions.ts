@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Hero } from '../../hero';
+import { Hero } from '../../core/models/hero';
 import { createActionType } from '../shared/utils';
 
 export const ADD_HERO = createActionType('ADD_HERO');

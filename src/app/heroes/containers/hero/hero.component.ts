@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, first, map, share, switchMap, tap } from 'rxjs/operators';
 
-import { Hero } from '../../../hero';
+import { Hero } from '../../../core/models/hero';
 import { TourOfHeroesState } from '../../../state/app.interfaces';
 import { getSelectedHero } from '../../../state/heroes';
 import { DeleteHero, LoadHero, SelectHero, UpdateHero } from '../../../state/heroes/heroes.actions';
@@ -26,7 +26,6 @@ export class HeroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.hero = this.activatedRoute.paramMap
       .pipe(
         tap(paramMap => {

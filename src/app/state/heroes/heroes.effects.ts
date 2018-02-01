@@ -4,8 +4,8 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { map, switchMap } from 'rxjs/operators';
 
-import { Hero } from '../../hero';
-import { HeroService } from '../../hero.service';
+import { Hero } from '../../core/models/hero';
+import { HeroService } from '../../core/services/hero.service';
 import {
   ADD_HERO,
   AddHero,

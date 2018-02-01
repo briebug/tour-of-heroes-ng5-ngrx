@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { Hero } from '../../../hero';
+import { Hero } from '../../../core/models/hero';
 import { TourOfHeroesState } from '../../../state/app.interfaces';
 import { getAllHeroes, getIsHeroBeingAdded, getSelectedHero, getSelectedHeroId } from '../../../state/heroes';
 import { AddHero, AddingHero, DeleteHero, LoadHeroes, SelectHero } from '../../../state/heroes/heroes.actions';

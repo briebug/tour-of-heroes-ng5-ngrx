@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Hero } from '../../../hero';
+import { Hero } from '../../../core/models/hero';
 
 @Component({
   selector: 'my-heroes',
@@ -54,7 +54,7 @@ export class HeroesComponent implements OnInit {
     this.error = '';
   }
 
-  gotoDetail(): void {
+  goTodetail(): void {
     this.router.navigate(['/detail', this.selectedHeroId]);
   }
 

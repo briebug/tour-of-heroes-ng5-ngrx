@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Hero } from '../../../hero';
+import { Hero } from '../../../core/models/hero';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'my-top-heroes-list',
@@ -10,7 +11,8 @@ export class TopHeroesListComponent implements OnInit, OnChanges {
 
   @Input() heroes: Hero[];
   topHeroes: Hero[];
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,8 +20,9 @@ export class TopHeroesListComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.topHeroes = this.heroes.slice(1, 5);
   }
-  gotoDetail(hero: Hero) {
 
+  goToDetail(hero: Hero) {
+    const link = ['/detail', hero.id];
+    this.router.navigate(link);
   }
-
 }

@@ -7,9 +7,9 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { HeroService } from './hero.service';
+import { HeroService } from './core/services/hero.service';
 import { HeroesModule } from './heroes/heroes.module';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from './core/services/in-memory-data.service';
 import { StateModule } from './state/state.module';
 
 @NgModule({

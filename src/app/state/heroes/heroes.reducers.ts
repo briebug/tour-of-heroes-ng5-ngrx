@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Hero } from '../../hero';
+import { Hero } from '../../core/models/hero';
 import {
   ADD_HERO_SUCCESS, ADDING_HERO, DELETE_HERO_SUCCESS, HeroesActions, LOAD_HERO_SUCCESS, LOAD_HEROES_SUCCESS,
   SELECT_HERO,

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Hero } from '../../../hero';
+import { Hero } from '../../../core/models/hero';
 
 @Component({
   selector: 'my-hero-detail',
