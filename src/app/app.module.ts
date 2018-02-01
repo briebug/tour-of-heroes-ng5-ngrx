@@ -7,7 +7,6 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { HeroSearchComponent } from './hero-search.component';
 import { HeroService } from './hero.service';
 import { HeroesModule } from './heroes/heroes.module';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -25,8 +24,7 @@ import { StateModule } from './state/state.module';
     InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 })
   ],
   declarations: [
-    AppComponent,
-    HeroSearchComponent
+    AppComponent
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]
