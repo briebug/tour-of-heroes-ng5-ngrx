@@ -4,7 +4,7 @@ John Papa's Tour of Heroes application updated with Angular 5. There are several
 
 * master - Main branch that is just the Tour of Heroes application updated with Angular 5
 * ngrx-basics - Includes NgRx 5 installation, scaffolding and basic implementation for getting a list of heroes via the store
-* ngrx-complete (in progress) - Includes full conversion to NgRx in all components
+* ngrx-complete - Splitting everything up into smart/dumb components with full conversion to NgRx
 * ngrx-sidekicks (in progress) - Shows how to implement NgRx via lazy-loaded modules
 
 ## Get the Code
