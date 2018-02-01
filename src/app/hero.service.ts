@@ -40,8 +40,10 @@ export class HeroService {
 
   // Add new Hero
   private post(hero: Hero): Observable<Hero> {
+    // Only post the name property so the in-memory service will
+    //  assign a new ID
     return this.httpClient
-      .post<Hero>(this.heroesUrl, hero);
+      .post<Hero>(this.heroesUrl, { name: hero.name });
   }
 
   // Update existing Hero

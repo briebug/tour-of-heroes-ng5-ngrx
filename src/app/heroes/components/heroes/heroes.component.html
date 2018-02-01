@@ -1,7 +1,3 @@
-<pre>
-  ID: {{ selectedHeroId }}
-</pre>
-
 <ul class="heroes">
   <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
     <span class="hero-element">
@@ -11,11 +7,18 @@
   </li>
 </ul>
 
-<div class="error" *ngIf="error">{{error}}</div>
+
 <button (click)="addHero()">Add New Hero</button>
 <div *ngIf="addingHero">
-  ADDING HERO
-  <!--<my-hero-detail [hero]="selectedHero" (close)="close($event)"></my-hero-detail>-->
+  <div class="new-hero-spacing">
+    <my-hero-detail
+      [hero]="newHero"
+      (saveHeroEvent)="close($event)"
+      (backClick)="onBackClick()"
+      (error)="onError($event)"
+    ></my-hero-detail>
+  </div>
+  <div class="error" *ngIf="error">{{error}}</div>
 </div>
 
 <div *ngIf="selectedHero">

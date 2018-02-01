@@ -17,8 +17,15 @@ export class HeroesComponent implements OnInit {
   @Output() heroDeletedEvent = new EventEmitter<Hero>();
   showNgFor = false;
   selectedHeroId: number;
+  newHero: Hero;
+  error: string;
+  addError: string;
 
   constructor(private router: Router) {
+    this.newHero = new Hero();
+    this.newHero.id = 0;
+    this.newHero.name = '';
+    this.error = '';
   }
 
   addHero(): void {
@@ -33,11 +40,18 @@ export class HeroesComponent implements OnInit {
       // this.store.dispatch(new AddHero(savedHero));
       this.heroAddedEvent.emit(savedHero);
     }
+    this.error = '';
+  }
+
+  onBackClick() {
+    this.addingHeroEvent.emit(false);
+    this.error = '';
   }
 
   deleteHero(hero: Hero, event: any): void {
     event.stopPropagation();
     this.heroDeletedEvent.emit(hero);
+    this.error = '';
   }
 
   gotoDetail(): void {
@@ -54,5 +68,9 @@ export class HeroesComponent implements OnInit {
     if (this.addingHero) {
       this.addingHeroEvent.emit(false);
     }
+  }
+
+  onError(err: any) {
+    this.error = err;
   }
 }

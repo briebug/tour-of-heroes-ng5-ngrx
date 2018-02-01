@@ -1,19 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { EditComponent } from './containers/edit/edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { HeroesComponent } from './components/heroes/heroes.component';
+import { AddHeroComponent } from './containers/add-hero/add-hero.component';
 import { HeroComponent } from './containers/hero/hero.component';
 import { IndexComponent } from './containers/index/index.component';
-import { HeroesComponent } from './components/heroes/heroes.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     IndexComponent,
     HeroComponent,
-    EditComponent,
     HeroesComponent,
+    HeroDetailComponent,
+    AddHeroComponent,
   ]
 })
 export class HeroesModule { }

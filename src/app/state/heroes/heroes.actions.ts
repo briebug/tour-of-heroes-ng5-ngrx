@@ -68,7 +68,7 @@ export class LoadTopHeroesSuccess implements Action {
 
 export class SelectHero implements Action {
   readonly type = SELECT_HERO;
-  constructor(public payload: Hero) {
+  constructor(public payload: { id: number }) {
   }
 }
 

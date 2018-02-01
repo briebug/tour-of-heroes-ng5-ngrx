@@ -2,14 +2,25 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Hero } from '../../hero';
 import { HeroService } from '../../hero.service';
 import {
-  ADD_HERO, AddHero, AddHeroSuccess,
-  DELETE_HERO, DeleteHero, DeleteHeroSuccess, LOAD_HERO, LOAD_HEROES, LoadHero,
-  LoadHeroesSuccess, LoadHeroSuccess, UPDATE_HERO, UpdateHero, UpdateHeroSuccess
+  ADD_HERO,
+  AddHero,
+  AddHeroSuccess,
+  DELETE_HERO,
+  DeleteHero,
+  DeleteHeroSuccess,
+  LOAD_HERO,
+  LOAD_HEROES,
+  LoadHero,
+  LoadHeroesSuccess,
+  LoadHeroSuccess,
+  UPDATE_HERO,
+  UpdateHero,
+  UpdateHeroSuccess
 } from './heroes.actions';
 
 @Injectable()

@@ -67,3 +67,8 @@ button.delete-button{
   background-color: rgb(216,59,1) !important;
   color:white;
 }
+
+.new-hero-spacing {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}

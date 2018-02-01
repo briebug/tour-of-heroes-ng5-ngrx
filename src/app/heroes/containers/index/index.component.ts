@@ -45,37 +45,10 @@ export class IndexComponent  implements OnInit {
   }
 
   onSelectedHero(hero: Hero) {
-    this.store.dispatch(new SelectHero(hero));
+    this.store.dispatch(new SelectHero({id: hero.id}));
   }
-
-  // addHero(): void {
-  //   // Tell the store that we're going to add a hero
-  //   this.store.dispatch(new AddingHero({isAdding: true}));
-  // }
-  //
-  // close(savedHero: Hero): void {
-  //   this.store.dispatch(new AddingHero({isAdding: false}));
-  //   console.log(`savedHero = ${savedHero.name}`);
-  //   if (savedHero) {
-  //     this.store.dispatch(new AddHero(savedHero));
-  //     // this.getHeroes();
-  //   }
-  // }
-  //
-  // deleteHero(hero: Hero, event: any): void {
-  //   event.stopPropagation();
-  //   // All we have to do is dispatch the delete action
-  //   // Everything else will update based on the subscriptions that we've already set up
-  //   this.store.dispatch(new DeleteHero(hero));
-  // }
 
   ngOnInit(): void {
     this.getHeroes();
   }
-
-  // onSelect(hero: Hero): void {
-  //   // Dispatch the action to set the new selected hero id
-  //   this.store.dispatch(new SelectHero(hero));
-  //   this.store.dispatch(new AddingHero({isAdding: false}));
-  // }
 }
