@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { Hero } from '../../core/models/hero';
-import { createActionType } from '../shared/utils';
 
 export enum HeroActionTypes {
   ADD_HERO = 'ADD_HERO',

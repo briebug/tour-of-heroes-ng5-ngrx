@@ -5,7 +5,6 @@ import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
-import { AppEffects } from './app.effects';
 import { appMetaReducers, appReducer } from './app.reducer';
 import { HeroesEffects } from './heroes/heroes.effects';
 import { CustomRouterStateSerializer } from './shared/utils';
