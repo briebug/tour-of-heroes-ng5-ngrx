@@ -4,7 +4,7 @@ import { Hero } from '../../hero';
 export enum HeroActionTypes {
   LOAD_HEROES = 'LOAD_HEROES',
   LOAD_HEROES_SUCCESS = 'LOAD_HEROES_SUCCESS'
-};
+}
 
 export class LoadHeroes implements Action {
   readonly type = HeroActionTypes.LOAD_HEROES;
