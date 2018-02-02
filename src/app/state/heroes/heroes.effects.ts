@@ -6,17 +6,15 @@ import { map, switchMap, tap } from 'rxjs/operators';
 
 import { Hero } from '../../hero';
 import { HeroService } from '../../hero.service';
-import { LOAD_HEROES, LoadHeroesSuccess } from './heroes.actions';
+import { HeroActionTypes, LoadHeroesSuccess } from './heroes.actions';
 
 @Injectable()
 export class HeroesEffects {
 
   @Effect()
-  getHeroes: Observable<Action> = this.actions.ofType(LOAD_HEROES)
+  getHeroes: Observable<Action> = this.actions.ofType(HeroActionTypes.LOAD_HEROES)
     .pipe(
-      tap(() => console.log('getHeroes effect start')),
       switchMap(() => this.service.getHeroes()),
-      tap((heroes: Hero[]) => console.log(`getHeroes effect total = ${heroes.length}`)),
       map((heroes: Hero[]) => new LoadHeroesSuccess(heroes)
       )
     );

@@ -1,16 +1,17 @@
 import { Action } from '@ngrx/store';
 import { Hero } from '../../hero';
-import { createActionType } from '../shared/utils';
 
-export const LOAD_HEROES = createActionType('LOAD_HEROES');
-export const LOAD_HEROES_SUCCESS = createActionType('LOAD_HEROES_SUCCESS');
+export enum HeroActionTypes {
+  LOAD_HEROES = 'LOAD_HEROES',
+  LOAD_HEROES_SUCCESS = 'LOAD_HEROES_SUCCESS'
+};
 
 export class LoadHeroes implements Action {
-  readonly type = LOAD_HEROES;
+  readonly type = HeroActionTypes.LOAD_HEROES;
 }
 
 export class LoadHeroesSuccess implements Action {
-  readonly type = LOAD_HEROES_SUCCESS;
+  readonly type = HeroActionTypes.LOAD_HEROES_SUCCESS;
   constructor(public payload: Hero[]) {
   }
 }
