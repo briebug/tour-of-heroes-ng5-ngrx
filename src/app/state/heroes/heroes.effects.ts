@@ -7,18 +7,14 @@ import { map, switchMap } from 'rxjs/operators';
 import { Hero } from '../../core/models/hero';
 import { HeroService } from '../../core/services/hero.service';
 import {
-  ADD_HERO,
   AddHero,
   AddHeroSuccess,
-  DELETE_HERO,
   DeleteHero,
   DeleteHeroSuccess,
-  LOAD_HERO,
-  LOAD_HEROES,
+  HeroActionTypes,
   LoadHero,
   LoadHeroesSuccess,
   LoadHeroSuccess,
-  UPDATE_HERO,
   UpdateHero,
   UpdateHeroSuccess
 } from './heroes.actions';
@@ -27,7 +23,7 @@ import {
 export class HeroesEffects {
 
   @Effect()
-  addHero: Observable<Action> = this.actions.ofType(ADD_HERO)
+  addHero: Observable<Action> = this.actions.ofType(HeroActionTypes.ADD_HERO)
     .pipe(
       map((action: AddHero) => action.payload),
       switchMap(payload => this.service.save(payload)),
@@ -35,7 +31,7 @@ export class HeroesEffects {
     );
 
   @Effect()
-  deleteHero: Observable<Action> = this.actions.ofType(DELETE_HERO)
+  deleteHero: Observable<Action> = this.actions.ofType(HeroActionTypes.DELETE_HERO)
     .pipe(
       map((action: DeleteHero) => action.payload),
       switchMap(payload => this.service.delete(payload)),
@@ -43,7 +39,7 @@ export class HeroesEffects {
     );
 
   @Effect()
-  getHeroes: Observable<Action> = this.actions.ofType(LOAD_HEROES)
+  getHeroes: Observable<Action> = this.actions.ofType(HeroActionTypes.LOAD_HEROES)
     .pipe(
       switchMap(() => this.service.getHeroes()),
       map((heroes: Hero[]) => new LoadHeroesSuccess(heroes)
@@ -51,7 +47,7 @@ export class HeroesEffects {
     );
 
   @Effect()
-  loadHero: Observable<Action> = this.actions.ofType(LOAD_HERO)
+  loadHero: Observable<Action> = this.actions.ofType(HeroActionTypes.LOAD_HERO)
     .pipe(
       map((action: LoadHero) => action.payload),
       switchMap(payload => this.service.getHero(payload.id)),
@@ -59,7 +55,7 @@ export class HeroesEffects {
     );
 
   @Effect()
-  updateHero: Observable<Action> = this.actions.ofType(UPDATE_HERO)
+  updateHero: Observable<Action> = this.actions.ofType(HeroActionTypes.UPDATE_HERO)
     .pipe(
       map((action: UpdateHero) => action.payload),
       switchMap(payload => this.service.save(payload)),
