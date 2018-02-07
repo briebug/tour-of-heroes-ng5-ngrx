@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Hero } from '../../../core/models/hero';
+import { Sidekick } from '../../../core/models/sidekick';
 
 @Component({
   selector: 'my-hero-detail',
@@ -11,6 +12,7 @@ import { Hero } from '../../../core/models/hero';
 export class HeroDetailComponent implements OnInit, OnChanges {
 
   @Input() hero: Hero;
+  @Input() sidekicks: Sidekick[];
   @Output() saveHeroEvent = new EventEmitter<Hero>();
   @Output() backClick = new EventEmitter();
   @Output() error = new EventEmitter<any>();

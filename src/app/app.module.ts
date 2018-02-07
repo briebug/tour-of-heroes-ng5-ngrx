@@ -6,10 +6,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { HeroService } from './core/services/hero.service';
-import { HeroesModule } from './heroes/heroes.module';
 import { InMemoryDataService } from './core/services/in-memory-data.service';
+import { SidekickService } from './core/services/sidekick.service.ts.service';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { HeroesModule } from './heroes/heroes.module';
 import { StateModule } from './state/state.module';
 
 @NgModule({
@@ -26,7 +27,7 @@ import { StateModule } from './state/state.module';
   declarations: [
     AppComponent
   ],
-  providers: [HeroService],
+  providers: [HeroService, SidekickService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,8 @@
 <my-hero-detail
   [hero]="hero | async"
+  [sidekicks]="sidekicks | async"
   (saveHeroEvent)="onSave($event)"
   (backClick)="onBackClick()">
 </my-hero-detail>
+
+<my-sidekick-list [sidekicks]="sidekicks | async"></my-sidekick-list>

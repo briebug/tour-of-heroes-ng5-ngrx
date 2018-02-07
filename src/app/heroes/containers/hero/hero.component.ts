@@ -3,9 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { catchError, first, map, share, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, first, map, share, switchMap, tap } from 'rxjs/operators';
+import { getSelectedSidekick, getSidekicksForSelectedHero } from '../../../+sidekicks/state';
+import { LoadHeroSidekicks } from '../../../+sidekicks/state/sidekicks.actions';
 
 import { Hero } from '../../../core/models/hero';
+import { Sidekick } from '../../../core/models/sidekick';
 import { TourOfHeroesState } from '../../../state/app.interfaces';
 import { getSelectedHero } from '../../../state/heroes';
 import { DeleteHero, LoadHero, SelectHero, UpdateHero } from '../../../state/heroes/heroes.actions';
@@ -18,6 +21,7 @@ import { DeleteHero, LoadHero, SelectHero, UpdateHero } from '../../../state/her
 export class HeroComponent implements OnInit {
 
   hero: Observable<Hero>;
+  sidekicks: Observable<Array<Sidekick>>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,17 +38,24 @@ export class HeroComponent implements OnInit {
             .subscribe(
               inStore => {
                 if (!inStore) {
-                  this.store.dispatch(new LoadHero({id: Number(paramMap.get('id'))}))
+                  console.log(paramMap.get('id'));
+                  this.store.dispatch(new LoadHero({id: Number(paramMap.get('id'))}));
                 }
               }
-            )
+            );
         }),
         switchMap(() => this.store.select(getSelectedHero))
         , catchError((err) => {
           console.log(err);
           return of<Hero>();
         })
-        , share()
+      );
+
+    this.sidekicks = this.hero
+      .pipe(
+        filter(hero => !!hero),
+        map((hero) => this.store.dispatch(new LoadHeroSidekicks({heroId: hero.id}))),
+        switchMap(() => this.store.select(getSidekicksForSelectedHero)),
       );
   }
 
@@ -52,7 +63,16 @@ export class HeroComponent implements OnInit {
     return this.store.select(getSelectedHero)
       .pipe(
         first(),
+        tap((hero) => console.log(hero)),
         map(hero => !!hero)
+      );
+  }
+
+  hasSidekickInStore(): Observable<boolean> {
+    return this.store.select(getSelectedSidekick)
+      .pipe(
+        first(),
+        map(sidekick => !!sidekick)
       );
   }
 

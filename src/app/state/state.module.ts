@@ -4,6 +4,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SidekicksEffects } from '../+sidekicks/state/sidekicks.effects';
+import * as fromSidekicks from '../+sidekicks/state/sidekicks.reducers';
 import { environment } from '../../environments/environment';
 import { appMetaReducers, appReducer } from './app.reducer';
 import { HeroesEffects } from './heroes/heroes.effects';
@@ -14,7 +16,8 @@ import { CustomRouterStateSerializer } from './shared/utils';
     CommonModule,
     StoreRouterConnectingModule,
     StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
-    EffectsModule.forRoot([HeroesEffects]),
+    StoreModule.forFeature('sidekicks', fromSidekicks.reducer),
+    EffectsModule.forRoot([HeroesEffects, SidekicksEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   declarations: []
