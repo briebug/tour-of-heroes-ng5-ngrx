@@ -28,13 +28,13 @@ export class SidekicksEffects {
       map((sidekicks: Sidekick[]) => new LoadHeroSidekicksSuccess(sidekicks))
     );
 
-  @Effect()
-  loadSidekick: Observable<Action> = this.actions.ofType(SidekickActionTypes.LOAD_SIDEKICKS_SUCCESS)
-    .pipe(
-      map((action: LoadSidekick) => action.payload),
-      switchMap(payload => this.sidekickService.getSidekick(payload.id)),
-      map((sidekick: Sidekick) => new LoadSidekickSuccess(sidekick))
-    );
+  // @Effect()
+  // loadSidekick: Observable<Action> = this.actions.ofType(SidekickActionTypes.LOAD_SIDEKICKS_SUCCESS)
+  //   .pipe(
+  //     map((action: LoadSidekick) => action.payload),
+  //     switchMap(payload => this.sidekickService.getSidekick(payload.id)),
+  //     map((sidekick: Sidekick) => new LoadSidekickSuccess(sidekick))
+  //   );
 
   constructor(
     private actions: Actions,

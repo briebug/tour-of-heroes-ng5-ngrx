@@ -22,7 +22,7 @@ export class TopHeroesListComponent implements OnInit, OnChanges {
   }
 
   goToDetail(hero: Hero) {
-    const link = ['/detail', hero.id];
+    const link = ['/hero', hero.id];
     this.router.navigate(link);
   }
 }

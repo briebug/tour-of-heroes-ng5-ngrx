@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SidekickListComponent } from '../shared/sidekick-list/sidekick-list.component';
+import { SharedModule } from '../shared/shared.module';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { AddHeroComponent } from './containers/add-hero/add-hero.component';
@@ -12,15 +12,15 @@ import { IndexComponent } from './containers/index/index.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [
     IndexComponent,
     HeroComponent,
     HeroesComponent,
     HeroDetailComponent,
-    AddHeroComponent,
-    SidekickListComponent
+    AddHeroComponent
   ]
 })
 export class HeroesModule { }

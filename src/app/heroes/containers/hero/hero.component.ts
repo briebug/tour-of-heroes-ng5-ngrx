@@ -38,7 +38,6 @@ export class HeroComponent implements OnInit {
             .subscribe(
               inStore => {
                 if (!inStore) {
-                  console.log(paramMap.get('id'));
                   this.store.dispatch(new LoadHero({id: Number(paramMap.get('id'))}));
                 }
               }
@@ -63,16 +62,7 @@ export class HeroComponent implements OnInit {
     return this.store.select(getSelectedHero)
       .pipe(
         first(),
-        tap((hero) => console.log(hero)),
         map(hero => !!hero)
-      );
-  }
-
-  hasSidekickInStore(): Observable<boolean> {
-    return this.store.select(getSelectedSidekick)
-      .pipe(
-        first(),
-        map(sidekick => !!sidekick)
       );
   }
 

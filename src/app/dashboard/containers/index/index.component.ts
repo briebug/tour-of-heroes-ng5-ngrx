@@ -34,7 +34,7 @@ export class IndexComponent implements OnInit {
   }
 
   onSelectedSearchItem(heroId: number) {
-    const link = ['/detail', heroId];
+    const link = ['/hero', heroId];
     this.router.navigate(link);
   }
 }

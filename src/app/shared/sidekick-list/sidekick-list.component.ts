@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Hero } from '../../core/models/hero';
 import { Sidekick } from '../../core/models/sidekick';
 
 @Component({
@@ -9,10 +10,17 @@ import { Sidekick } from '../../core/models/sidekick';
 export class SidekickListComponent implements OnInit {
 
   @Input() sidekicks: Sidekick[];
+  @Output() sidekickDeletedEvent = new EventEmitter<Sidekick>();
+  error: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  deleteSidekick(sidekick: Sidekick, event: any): void {
+    event.stopPropagation();
+    this.sidekickDeletedEvent.emit(sidekick);
+    this.error = '';
+  }
 }

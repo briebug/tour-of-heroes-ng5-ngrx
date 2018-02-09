@@ -46,8 +46,7 @@ export const getSelectedSidekick = createSelector (
 export const getSidekicksForSelectedHero = createSelector(
   getAllSidekicks,
   getSelectedHeroId,
-  (sidekicks, heroId) => {
-    console.log(`getSidekicksForSelectedHero, heroid = ${heroId}, sidekicks = ${sidekicks.length}`);
-    return sidekicks.filter(sidekick => sidekick.heroId === heroId);
-  }
+  (sidekicks, heroId) => sidekicks.filter(sidekick => sidekick.heroId === heroId).sort(function(a, b) {
+    return a.name === b.name ? 0 : +(a.name > b.name) || -1;
+  })
 );

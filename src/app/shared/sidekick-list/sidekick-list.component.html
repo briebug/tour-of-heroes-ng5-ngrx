@@ -1,5 +1,10 @@
-<p>
-  sidekick-list works!
-</p>
+<h3>Sidekicks</h3>
 
-{{ sidekicks | json }}
+<ul *ngIf="sidekicks" class="heroes">
+  <li *ngFor="let sidekick of sidekicks"> <!--(click)="onSelect(hero)" [class.selected]="hero === selectedHero">-->
+    <span class="hero-element">
+      <span class="badge">{{sidekick.id}}</span> {{sidekick.name}}
+    </span>
+    <button class="delete-button" (click)="deleteSidekick(sidekick, $event)">Delete</button>
+  </li>
+</ul>
