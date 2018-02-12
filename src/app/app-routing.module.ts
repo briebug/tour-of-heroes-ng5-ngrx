@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SidekicksComponent } from './+sidekicks/containers/sidekicks/sidekicks.component';
 import { IndexComponent } from './dashboard/containers/index/index.component';
 import { HeroComponent } from './heroes/containers/hero/hero.component';
 import { IndexComponent as HeroesIndexComponent } from './heroes/containers/index/index.component';
@@ -24,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'sidekicks',
-    component: SidekicksComponent
+    loadChildren: 'app/+sidekicks/sidekicks.module#SidekicksModule',
   }
 ];
 
