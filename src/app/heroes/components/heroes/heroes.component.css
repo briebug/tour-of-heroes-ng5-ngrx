@@ -18,6 +18,7 @@
   padding: .5em;
   height: 1.6em;
   border-radius: 4px;
+  width: 240px;
 }
 .heroes li:hover {
   color: #607D8B;
@@ -47,6 +48,8 @@
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+  width: 20px;
+  text-align: center;
 }
 button {
   font-family: Arial;
