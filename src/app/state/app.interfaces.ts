@@ -7,4 +7,4 @@ export interface AppState {
   heroes: heroesState
 }
 
-export type TourOfHeroesState = AppState | heroesState;
+export type TourOfHeroesState = AppState;

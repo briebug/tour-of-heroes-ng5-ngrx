@@ -1,6 +1,6 @@
-import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
-import { Hero } from "../../hero";
-import { HeroActionTypes, HeroesActions } from "./heroes.actions";
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Hero } from '../../hero';
+import { HeroActionTypes, HeroesActions } from './heroes.actions';
 
 export interface State extends EntityState<Hero> {
   selectedHeroId: number | null;
@@ -19,7 +19,7 @@ const initialState: State = adapter.getInitialState({
 export function reducer(state: State = initialState, action: HeroesActions) {
   switch (action.type) {
     case HeroActionTypes.LOAD_HEROES: {
-      return {...state, loading: true, error: ''};
+      return { ...state, loading: true, error: '' };
     }
 
     case HeroActionTypes.LOAD_HEROES_SUCCESS: {

@@ -1,8 +1,8 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import * as fromHeroes from "./heroes.reducers";
-import { State as HeroesState } from "./heroes.reducers";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import * as fromHeroes from './heroes.reducers';
+import { State as HeroesState } from './heroes.reducers';
 
-export const getHeroesState = createFeatureSelector<HeroesState>("heroes");
+export const getHeroesState = createFeatureSelector<HeroesState>('heroes');
 
 export const {
   selectAll: getAllHeroes,

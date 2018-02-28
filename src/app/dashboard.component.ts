@@ -1,18 +1,18 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { Store, select } from "@ngrx/store";
-import { Observable } from "rxjs/Observable";
-import { of } from "rxjs/observable/of";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
-import { Hero } from "./hero";
-import { TourOfHeroesState } from "./state/app.interfaces";
-import { LoadHeroes } from "./state/heroes/heroes.actions";
-import * as fromHeroes from "./state/heroes";
+import { Hero } from './hero';
+import { TourOfHeroesState } from './state/app.interfaces';
+import { LoadHeroes } from './state/heroes/heroes.actions';
+import * as fromHeroes from './state/heroes';
 
 @Component({
-  selector: "my-dashboard",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.css"]
+  selector: 'my-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   top5Heroes$: Observable<Hero[]>;
@@ -28,7 +28,7 @@ export class DashboardComponent {
   }
 
   gotoDetail(hero: Hero): void {
-    const link = ["/detail", hero.id];
+    const link = ['/detail', hero.id];
     this.router.navigate(link);
   }
 }
