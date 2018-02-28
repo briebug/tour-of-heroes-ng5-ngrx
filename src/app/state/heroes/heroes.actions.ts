@@ -1,9 +1,10 @@
-import { Action } from '@ngrx/store';
-import { Hero } from '../../hero';
+import { Action } from "@ngrx/store";
+import { Hero } from "../../hero";
 
 export enum HeroActionTypes {
-  LOAD_HEROES = 'LOAD_HEROES',
-  LOAD_HEROES_SUCCESS = 'LOAD_HEROES_SUCCESS'
+  LOAD_HEROES = "LOAD_HEROES",
+  LOAD_HEROES_SUCCESS = "LOAD_HEROES_SUCCESS",
+  LOAD_HEROES_FAIL = "LOAD_HEROES_FAIL"
 }
 
 export class LoadHeroes implements Action {
@@ -12,10 +13,12 @@ export class LoadHeroes implements Action {
 
 export class LoadHeroesSuccess implements Action {
   readonly type = HeroActionTypes.LOAD_HEROES_SUCCESS;
-  constructor(public payload: Hero[]) {
-  }
+  constructor(public payload: Hero[]) {}
 }
 
-export type HeroesActions =
-  LoadHeroes
-  | LoadHeroesSuccess;
+export class LoadHeroesFail implements Action {
+  readonly type = HeroActionTypes.LOAD_HEROES_FAIL;
+  constructor(public error: any) {}
+}
+
+export type HeroesActions = LoadHeroes | LoadHeroesSuccess | LoadHeroesFail;
