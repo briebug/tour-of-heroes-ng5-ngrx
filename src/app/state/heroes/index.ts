@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromHeroes from './heroes.reducers';
 import { State as HeroesState } from './heroes.reducers';
+import { Hero } from './heroes.model';
 
 export const getHeroesState = createFeatureSelector<HeroesState>('heroes');
 
@@ -16,20 +17,30 @@ export const {
   selectTotal: getHeroesTotal,
 } = fromHeroes.adapter.getSelectors(getHeroesState);
 
-export const getSelectedHeroId = createSelector (
+export const getSelectedHeroId = createSelector(
   getHeroesState,
   fromHeroes.getSelectedHeroId
 );
 
-export const getIsHeroBeingAdded = createSelector (
+export const getIsHeroLoading = createSelector(
   getHeroesState,
-  fromHeroes.isHeroBeingAdded
+  fromHeroes.loading
 );
 
-export const getSelectedHero = createSelector (
+export const getHeroError = createSelector(
+  getHeroesState,
+  fromHeroes.error
+);
+
+export const getSelectedHero = createSelector(
   getHeroesEntityState,
   getSelectedHeroId,
   (entities, selectedHeroId) => {
     return entities && entities[selectedHeroId]
   }
+);
+
+export const getTop4Heroes = createSelector(
+  getAllHeroes,
+  (heroes: Hero[]) => heroes.slice(0, 4)
 );

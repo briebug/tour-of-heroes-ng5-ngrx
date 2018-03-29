@@ -8,10 +8,12 @@ import { environment } from '../../environments/environment';
 import { appMetaReducers, appReducer } from './app.reducer';
 import { HeroesEffects } from './heroes/heroes.effects';
 import { CustomRouterStateSerializer } from './shared/utils';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    CoreModule.forRoot(),
     StoreRouterConnectingModule,
     StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
     EffectsModule.forRoot([HeroesEffects]),
@@ -31,7 +33,7 @@ export class StateModule {
          * A custom RouterStateSerializer is used to parse the `RouterStateSnapshot` provided
          * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
          */
-        {provide: RouterStateSerializer, useClass: CustomRouterStateSerializer}
+        { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
       ]
     };
   }

@@ -1,56 +1,46 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Hero } from '../../core/models/hero';
+import { Hero } from './heroes.model';
 import { HeroActionTypes, HeroesActions } from './heroes.actions';
 
 export interface State extends EntityState<Hero> {
   selectedHeroId: number | null;
   addingHero: boolean;
+  loading: boolean;
+  error: string;
 }
 
 export const adapter: EntityAdapter<Hero> = createEntityAdapter<Hero>();
 
 const initialState: State = adapter.getInitialState({
   selectedHeroId: null,
-  addingHero: false
+  addingHero: false,
+  loading: false,
+  error: ''
 });
 
 export function reducer(state: State = initialState, action: HeroesActions) {
   switch (action.type) {
-    case HeroActionTypes.ADD_HERO_SUCCESS:
-      // console.log(`ADD_HERO_SUCCESS reducer = ${action.payload.id}`);
-      state = { ...state, selectedHeroId: action.payload.id, addingHero: false };
-      return adapter.addOne(action.payload, state);
 
-    case HeroActionTypes.ADDING_HERO:
-      // console.log(`ADDING_HERO reducer = ${action.payload.isAdding}`);
-      return { ...state, selectedHeroId: null, addingHero: action.payload.isAdding };
 
-    case HeroActionTypes.DELETE_HERO_SUCCESS:
-      // console.log(`DELETE_HERO_SUCCESS reducer = ${action.payload.id}`);
-      state = { ...state, selectedHeroId: null, addingHero: false };
-      return adapter.removeOne(action.payload.id, state);
+    case HeroActionTypes.LoadHeroes:
+      return {
+        ...adapter.removeAll(state),
+        loading: true,
+        error: ''
+      }
 
-    case HeroActionTypes.LOAD_HERO_SUCCESS:
-      // console.log(`LOAD_HERO_SUCCESS reducer = ${action.payload.id}`);
-      state = { ...state, selectedHeroId: action.payload.id, addingHero: false };
-      return adapter.addOne(action.payload, state);
+    case HeroActionTypes.LoadHeroesSuccess:
+      return {
+        ...adapter.addAll(action.payload, state),
+        loading: false
+      }
 
-    case HeroActionTypes.LOAD_HEROES_SUCCESS:
-      // console.log(`LOAD_HEROES_SUCCESS COUNT reducer = ${action.payload.length}`);
-      state = { ...state, selectedHeroId: null, addingHero: false };
-      return adapter.addAll(action.payload, state);
-
-    case HeroActionTypes.SELECT_HERO:
-      // console.log(`SELECT_HERO reducer = ${action.payload.id}`);
-      return { ...state, selectedHeroId: action.payload.id, addingHero: false };
-
-    case HeroActionTypes.UPDATE_HERO_SUCCESS:
-      // console.log(`UPDATE_HERO_SUCCESS reducer = ${action.payload.id}`);
-      state = { ...state, selectedHeroId: action.payload.id, addingHero: false };
-      return adapter.updateOne({
-        id: action.payload.id,
-        changes: action.payload
-      }, state);
+    case HeroActionTypes.LoadHeroesFail:
+      return {
+        ...state,
+        loading: false,
+        error: 'Error loading heros'
+      }
 
     default:
       return state;
@@ -58,4 +48,5 @@ export function reducer(state: State = initialState, action: HeroesActions) {
 }
 
 export const getSelectedHeroId = (state: State) => state.selectedHeroId;
-export const isHeroBeingAdded = (state: State) => state.addingHero;
+export const loading = (state: State) => state.loading;
+export const error = (state: State) => state.error;

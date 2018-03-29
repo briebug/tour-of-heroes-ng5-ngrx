@@ -15,6 +15,14 @@
     "lib": [
       "es2016",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@state/*": [
+        "app/state/*"
+      ],
+      "@core/*": [
+        "app/core/*"
+      ]
+    }
   }
 }

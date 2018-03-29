@@ -1,11 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
-import { HeroesComponent } from './components/heroes/heroes.component';
-import { AddHeroComponent } from './containers/add-hero/add-hero.component';
-import { HeroComponent } from './containers/hero/hero.component';
 import { IndexComponent } from './containers/index/index.component';
+import { TopHeroesListComponent } from './components/top-heroes-list/top-heroes-list.component'
 
 @NgModule({
   imports: [
@@ -15,10 +12,7 @@ import { IndexComponent } from './containers/index/index.component';
   ],
   declarations: [
     IndexComponent,
-    HeroComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    AddHeroComponent,
+    TopHeroesListComponent
   ]
 })
 export class HeroesModule { }
